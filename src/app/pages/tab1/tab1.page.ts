@@ -21,10 +21,18 @@ export class Tab1Page implements OnInit {
       this.recentMovies = data.results;
     });
 
+    this.loadPopular();
+  }
+
+  loadPopular = () => {
     this.movieServ.getPopular().subscribe((data) => {
-      console.log("🚀 ~ file: tab1.page.ts ~ line 25 ~ Tab1Page ~ this.movieServ.getPopulars ~ data", data)
-      this.popularMovies = data.results;
+      const tempArray = [...this.popularMovies, ...data.results];
+      this.popularMovies = tempArray;
     })
+  }
+
+  loadMore = () => {
+    this.loadPopular();
   }
 
 
