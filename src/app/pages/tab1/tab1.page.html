@@ -1,0 +1,32 @@
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <H3>New Movies</H3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-slideshow-backdrop [movies]="recentMovies"></app-slideshow-backdrop>
+
+  
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <H3>Billboard</H3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+  <app-slideshow-poster [movies]="recentMovies"></app-slideshow-poster>
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <H3>Popular</H3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-slideshow-pair [movies]="popularMovies"></app-slideshow-pair>
+
+</ion-content>
