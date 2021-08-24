@@ -1,3 +1,19 @@
-<p>
-  detail works!
-</p>
+<ion-content>
+
+  <ion-label class="title">
+    <h1>
+      {{movieDetail.title}}
+    </h1>
+  </ion-label>
+
+  <img [src]="movieDetail.backdrop_path | image" *ngIf="movieDetail.backdrop_path">
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4" class="poster_detail">
+        <img [src]="movieDetail.poster_path | image" class="poster_detail">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
