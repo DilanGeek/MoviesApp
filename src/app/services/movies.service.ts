@@ -54,6 +54,11 @@ export class MoviesService {
     return query
   }
 
+  findMovieByName = (name: string) => {
+    const query = this.executeQuery<ResponseMovieMDB>(`/search/movie?query=${name}`);
+    return query;
+  }
+
   private executeQuery<T>(query: string) {
     query = URL + query;
     query += `&api_key=${apiKey}&language=es&include_image_language=es`
