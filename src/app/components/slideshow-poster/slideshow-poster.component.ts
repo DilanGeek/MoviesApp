@@ -22,7 +22,7 @@ export class SlideshowPosterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.movies)
+    // console.log(this.movies)
   }
 
   showDetails = async (id: number) => {

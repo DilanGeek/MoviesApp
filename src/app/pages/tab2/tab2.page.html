@@ -14,7 +14,7 @@
 
 <ion-content>
 
-  <ion-grid fixed>
+  <ion-grid fixed *ngIf="searching">
     <ion-row>
       <ion-col class="spinnerCenter">
         <ion-spinner name="crescent"></ion-spinner>
@@ -37,7 +37,7 @@
     <ion-row>
       <ion-col size="6" *ngFor="let movie of movies">
 
-        <ion-card>
+        <ion-card (click)="showMovieDetail(movie.id)">
           <img [src]="movie.poster_path | image" alt="">
 
           <ion-card-header>

@@ -26,7 +26,6 @@ export class SlideshowPairComponent implements OnInit {
   ngOnInit() { }
 
   loadMoreMovies = () => {
-    console.log('more movies')
     this.loadMore.emit()
   }
 

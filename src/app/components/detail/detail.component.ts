@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Cast, MovieDetail } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
+import { DataLocalService } from '../../services/data-local.service';
 
 @Component({
   selector: 'app-detail',
@@ -14,6 +15,7 @@ export class DetailComponent implements OnInit {
   movieDetail: MovieDetail = {};
   actors: Cast[] = [];
   hideText = 150;
+  star = 'star-outline'
 
   slideOptActors = {
     slidesPerView: 3.3,
@@ -23,16 +25,19 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private movieServ: MoviesService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private dataLocalServ: DataLocalService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    this.dataLocalServ.movieExists(this.id).then(exist => this.star = exist ? 'star' : 'star-outline');
+
     this.movieServ.getMovieDetail(this.id).subscribe((data) => {
       this.movieDetail = data
     })
 
     this.movieServ.getMovieActors(this.id).subscribe((data) => {
-      console.log("🚀 ~ file: detail.component.ts ~ line 24 ~ DetailComponent ~ this.movieServ.getMovieCredits ~ data", data)
       this.actors = data.cast
     })
 
@@ -41,6 +46,7 @@ export class DetailComponent implements OnInit {
   goBack = () => this.modalCtrl.dismiss()
 
   addFavorite = () => {
-    console.log('favorite')
+    const exist = this.dataLocalServ.saveMovie(this.movieDetail);
+    this.star = exist ? 'star' : 'star-outline';
   }
 }
